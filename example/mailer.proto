@@ -7,6 +7,11 @@ service MailerService {
   rpc ResetPassword (ResetPasswordParams) returns (Results) {}
 }
 
+service MailerService2 {
+  rpc ValidateAccount2 (ValidateAccountParams2) returns (Results2) {}
+  rpc ResetPassword2 (ResetPasswordParams2) returns (Results2) {}
+}
+
 message ValidateAccountParams {
   string to = 1;
   string subject = 2;

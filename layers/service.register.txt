@@ -1,0 +1,12 @@
+import { DefinePackageProps, InyectServiceProps } from "./libs/service.register.util";
+import { ProtoGrpcType } from './interfaces/&*&namePackage&*&';
+&*&importHanlders&*&
+
+export const definePackage: DefinePackageProps<ProtoGrpcType>  = {
+    protoFileName: '&*&packageFileName&*&',
+    namePackage: '&*&namePackage&*&'
+}
+
+export const InyectServiceGrpc: InyectServiceProps[] = [
+    &*&servicesInyect&*&
+];
