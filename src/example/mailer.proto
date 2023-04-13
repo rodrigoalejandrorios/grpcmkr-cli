@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package mailer;
+
+service MailerService {
+  rpc ValidateAccount (ValidateAccountParams) returns (Results) {}
+  rpc ResetPassword (ResetPasswordParams) returns (Results) {}
+}
+
+message ValidateAccountParams {
+  string to = 1;
+  string subject = 2;
+  string name = 3;
+  string code = 4;
+  string token = 5;
+}
+
+message ResetPasswordParams {
+  string to = 1;
+  string subject = 2;
+  string token = 3;
+}
+
+message Results {
+  string message = 1;
+}
+
+
+
+

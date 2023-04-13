@@ -1,0 +1,27 @@
+{
+  "name": "grpcli",
+  "version": "1.0.0",
+  "description": "Grpc CLI for developers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node dist/commands/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodrigoalejandrorios/grpcli.git"
+  },
+  "keywords": [
+    "grpc",
+    "microservices"
+  ],
+  "author": "Rodrigo Rios (codrrdev)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodrigoalejandrorios/grpcli/issues"
+  },
+  "homepage": "https://github.com/rodrigoalejandrorios/grpcli#readme",
+  "devDependencies": {
+    "@types/node": "^18.15.11"
+  }
+}
