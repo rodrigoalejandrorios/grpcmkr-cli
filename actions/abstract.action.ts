@@ -11,11 +11,11 @@ export abstract class AbstractAction {
   };
   readGrpcFile() {
     const reader = fs
-      .readFileSync(path.join(process.cwd(), this.createPath))
+      .readFileSync(this.createPath)
       .toString();
       return{
           fileContent: reader,
-          fileName: path.basename(path.join(process.cwd(), this.createPath))
+          fileName: path.basename(this.createPath)
       }
   }
 }

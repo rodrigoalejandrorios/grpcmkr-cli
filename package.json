@@ -4,7 +4,7 @@
   "description": "Grpc CLI for developers",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"tsc",
+    "build": "tsc",
     "start": "node dist/bin/grpcmkr.js"
   },
   "repository": {
@@ -17,6 +17,9 @@
   ],
   "bin": {
     "grpcmkr": "dist/bin/grpcmkr.js"
+  },
+  "engines": {
+    "node": ">= 14"
   },
   "author": "Rodrigo Rios (codrrdev)",
   "license": "ISC",
@@ -32,10 +35,11 @@
     "@types/prompt-sync": "^4.2.0"
   },
   "dependencies": {
-    "chalk": "^5.2.0",
+    "chalk": "4.1.2",
     "commander": "^10.0.0",
     "figlet": "^1.6.0",
     "inquirer": "^8.0.0",
+    "ora": "5.4.1",
     "prompt": "^1.3.0"
   }
 }

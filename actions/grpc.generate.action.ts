@@ -4,17 +4,22 @@ import path from "path";
 import { RpcDelcare } from "../interfaces/grpc.action.interface";
 
 enum PATH_MANAGER {
-  FOLDER_SAVE = "test-file",
   REGISTER_FILE_NAME = "service.register.ts",
 }
 
 export class GrpcFileGenerate extends FileGrpcReader {
-  constructor(pathFile: string) {
+  nameDir!: string;
+  constructor(pathFile: string, nameDir: string) {
     super(pathFile);
-    this.handlersGenerate();
+    this.nameDir = nameDir;
   }
 
-  serviceRegisterGenerate() {
+  public generate() {
+    this.handlersGenerate();
+    this.serviceRegisterGenerate();
+  }
+
+  private serviceRegisterGenerate() {
     const dataGrpcReader = this.grpcFileMapper();
     //console.log(JSON.stringify(dataGrpcReader))
     const reader = fs
@@ -57,16 +62,16 @@ export class GrpcFileGenerate extends FileGrpcReader {
         .join("")
     );
 
-    // fs.writeFileSync(
-    //   path.join(
-    //     process.cwd(),
-    //     `${PATH_MANAGER.FOLDER_SAVE}/${PATH_MANAGER.REGISTER_FILE_NAME}`
-    //   ),
-    //   textToModificate
-    // );
+    fs.writeFileSync(
+      path.join(
+        process.cwd(),
+        `${this.nameDir}/src/${PATH_MANAGER.REGISTER_FILE_NAME}`
+      ),
+      textToModificate
+    );
   }
 
-  handlersGenerate() {
+  private handlersGenerate() {
     const dataGrpcReader = this.grpcFileMapper();
     const reader = fs
       .readFileSync(path.join(process.cwd(), "layers/handler.txt"))
@@ -131,7 +136,7 @@ export class GrpcFileGenerate extends FileGrpcReader {
       fs.writeFileSync(
         path.join(
           process.cwd(),
-          `${PATH_MANAGER.FOLDER_SAVE}/${services[i].nameHandlerFile}`
+          `${this.nameDir}/src/${services[i].nameHandlerFile}`
         ),
         textToModificate
       );
@@ -158,5 +163,3 @@ export class GrpcFileGenerate extends FileGrpcReader {
       : dataString.replace(oldParam, newParam);
   }
 }
-
-new GrpcFileGenerate("example/mailer.proto");
