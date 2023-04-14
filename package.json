@@ -1,11 +1,11 @@
 {
-  "name": "grpcli",
+  "name": "@grpcmkr/cli",
   "version": "1.0.0",
   "description": "Grpc CLI for developers",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node dist/actions/grpc.generate.action.js"
+    "build":"tsc",
+    "start": "node dist/bin/grpcmkr.js"
   },
   "repository": {
     "type": "git",
@@ -15,6 +15,9 @@
     "grpc",
     "microservices"
   ],
+  "bin": {
+    "grpcmkr": "dist/bin/grpcmkr.js"
+  },
   "author": "Rodrigo Rios (codrrdev)",
   "license": "ISC",
   "bugs": {
@@ -22,6 +25,17 @@
   },
   "homepage": "https://github.com/rodrigoalejandrorios/grpcli#readme",
   "devDependencies": {
-    "@types/node": "^18.15.11"
+    "@types/figlet": "^1.5.5",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.15.11",
+    "@types/prompt": "^1.1.5",
+    "@types/prompt-sync": "^4.2.0"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "commander": "^10.0.0",
+    "figlet": "^1.6.0",
+    "inquirer": "^8.0.0",
+    "prompt": "^1.3.0"
   }
 }
