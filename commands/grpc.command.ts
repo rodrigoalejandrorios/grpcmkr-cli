@@ -1,27 +1,30 @@
 import inquirer, { Answers, QuestionCollection } from "inquirer";
 import { Command } from "commander";
 import { AbstractCommand } from "./abstract.command";
-import * as fs from "fs";
-import path from "path";
-import { GrpcFileGenerate } from "../actions/grpc.generate.action";
 import { CreateTemplate } from "../scripts/create.template";
-import ora from 'ora';
+import ora from "ora";
+import figlet from "figlet";
+import chalk from "chalk";
+import { EMOJIS } from "../utils/ui";
 
 export class GrpcCommand extends AbstractCommand {
   constructor() {
     super();
   }
   public async load(program: Command) {
+    
     program
       .command("create")
       .alias("cr")
       .action(() => {
+        inquirer.registerPrompt('path', require('inquirer-path').PathPrompt);
         const questions: QuestionCollection<Answers> = [
           {
             name: "proto",
             message:
-              "Write the name of the path where the .proto file is located:",
-            type: "input",
+              `Write the name of the path where the ${chalk.green('.proto')} file is located:`,
+            type: 'path',
+            default: process.cwd()
           },
           {
             name: "nameDir",
@@ -31,10 +34,13 @@ export class GrpcCommand extends AbstractCommand {
         ];
         inquirer.prompt(questions).then(async (a) => {
           const { nameDir, proto } = a;
-          
-          const cloneRes = await new CreateTemplate(nameDir,proto).cloneTemplate();
-          if(cloneRes){
-            await new CreateTemplate(nameDir,proto).createNewFiles();
+
+          const cloneRes = await new CreateTemplate(
+            nameDir,
+            proto
+          ).cloneTemplate();
+          if (cloneRes) {
+            await new CreateTemplate(nameDir, proto).createNewFiles();
           }
           //new GrpcFileGenerate(path.join(process.cwd(), a.proto)).generate();
         });

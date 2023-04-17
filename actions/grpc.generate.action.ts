@@ -2,6 +2,8 @@ import { FileGrpcReader } from "./grpc.reader.action";
 import * as fs from "fs";
 import path from "path";
 import { RpcDelcare } from "../interfaces/grpc.action.interface";
+import { handlerLayer } from "../layers/handler";
+import { serviceRegisterLayer } from "../layers/service.register";
 
 enum PATH_MANAGER {
   REGISTER_FILE_NAME = "service.register.ts",
@@ -24,9 +26,10 @@ export class GrpcFileGenerate extends FileGrpcReader {
   private async serviceRegisterGenerate() {
     const dataGrpcReader = this.grpcFileMapper();
     //console.log(JSON.stringify(dataGrpcReader))
-    const reader = fs
-      .readFileSync(path.join(process.cwd(), "layers/service.register.txt"))
-      .toString();
+    const reader = serviceRegisterLayer;
+    // const reader = fs
+    //   .readFileSync(path.join(process.cwd(), "layers/service.register.txt"))
+    //   .toString();
     let textToModificate = reader;
 
     textToModificate = this.replacement(
@@ -46,7 +49,9 @@ export class GrpcFileGenerate extends FileGrpcReader {
       textToModificate,
       "&*&importHanlders&*&",
       dataGrpcReader.services
-        .map((x) => `import { ${x.nameClass} } from './${x.nameHandlerImport}';`)
+        .map(
+          (x) => `import { ${x.nameClass} } from './${x.nameHandlerImport}';`
+        )
         .join("\n")
     );
 
@@ -86,9 +91,10 @@ export class GrpcFileGenerate extends FileGrpcReader {
 
   private async handlersGenerate() {
     const dataGrpcReader = this.grpcFileMapper();
-    const reader = fs
-      .readFileSync(path.join(process.cwd(), "layers/handler.txt"))
-      .toString();
+    const reader = handlerLayer;
+    // const reader = fs
+    //   .readFileSync(path.join(process.cwd(), "layers/handler.txt"))
+    //   .toString();
     const services = dataGrpcReader.services;
 
     for (let i = 0; i < services.length; i++) {

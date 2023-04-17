@@ -1,9 +1,11 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import { GrpcCommand } from "./grpc.command";
+import figlet from "figlet";
 
 export class CommandLoader {
   public static async load(program: Command) {
+    
     new GrpcCommand().load(program);
     this.handleInvalidCommand(program);
   }

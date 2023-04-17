@@ -1,3 +1,4 @@
+export const serviceRegisterLayer = `
 import { DefinePackageProps, InyectServiceProps } from "./libs/service.register.util";
 import { ProtoGrpcType } from './interfaces/&*&namePackage&*&';
 &*&importHanlders&*&
@@ -10,3 +11,4 @@ export const definePackage: DefinePackageProps<ProtoGrpcType>  = {
 export const InyectServiceGrpc: InyectServiceProps[] = [
     &*&servicesInyect&*&
 ];
+`

@@ -1,3 +1,4 @@
+export const handlerLayer = `
 &*&importHandler&*&
 import * as grpc from "@grpc/grpc-js";
 import {
@@ -12,3 +13,4 @@ export class &*&nameClass&*& implements &*&hanlder&*& {
       [name: string]: UntypedHandleCall;
   &*&functionsClass&*&
 }
+`
