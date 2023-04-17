@@ -1,12 +1,13 @@
-const nodeExternals = require('webpack-node-externals');
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   mode: 'production',
+  devtool: "inline-source-map",
   entry: './bin/grpcmkr.ts',
   target: 'node',
   output: {
-    filename: './bin/grpcmkr.js'
+    path: path.resolve(__dirname, './dist/bin'),
+    filename: 'grpcmkr.js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -16,6 +17,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
+        exclude: /node_modules/,
       },
     ],
   },
