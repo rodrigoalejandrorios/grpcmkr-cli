@@ -3,9 +3,10 @@ import { program } from "commander";
 import { CommandLoader } from "../commands/loader.command";
 
 const bootstrap = async () => {
+  console.log('Desde webpack2')
   program
     .version(
-      require("../../package.json").version,
+      require("../package.json").version,
       "-v, --version",
       "Output the current version."
     )

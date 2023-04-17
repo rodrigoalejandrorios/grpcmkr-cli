@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest --config test/jest-config.json",
     "build": "tsc",
-    "start": "node bundle/bundle.js",
+    "start": "node dist/bin/grpcmkr.js",
     "build:prod": "webpack"
   },
   "repository": {
