@@ -2,29 +2,26 @@ import inquirer, { Answers, QuestionCollection } from "inquirer";
 import { Command } from "commander";
 import { AbstractCommand } from "./abstract.command";
 import { CreateTemplate } from "../scripts/create.template";
-import ora from "ora";
-import figlet from "figlet";
 import chalk from "chalk";
-import { EMOJIS } from "../utils/ui";
 
 export class GrpcCommand extends AbstractCommand {
   constructor() {
     super();
   }
   public async load(program: Command) {
-    
     program
       .command("create")
       .alias("cr")
       .action(() => {
-        inquirer.registerPrompt('path', require('inquirer-path').PathPrompt);
+        inquirer.registerPrompt("path", require("inquirer-path").PathPrompt);
         const questions: QuestionCollection<Answers> = [
           {
             name: "proto",
-            message:
-              `Write the name of the path where the ${chalk.green('.proto')} file is located:`,
-            type: 'path',
-            default: process.cwd()
+            message: `Write the name of the path where the ${chalk.green(
+              ".proto"
+            )} file is located:`,
+            type: "path",
+            default: process.cwd(),
           },
           {
             name: "nameDir",

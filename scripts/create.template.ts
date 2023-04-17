@@ -39,7 +39,7 @@ export class CreateTemplate {
           resolve(false);
         }
         setTimeout(() => {
-          spinner.succeed(`${EMOJIS.JOY}Project create!`);
+          spinner.succeed(`Project create! ${EMOJIS.SUNGLASSES}`);
           resolve(true);
         }, 2000);
       });
@@ -66,7 +66,7 @@ export class CreateTemplate {
           resolve(false);
         }
         setTimeout(() => {
-          spinner.succeed("Templetize: Ok!");
+          spinner.succeed(`Templetize: Ok! ${EMOJIS.SUNGLASSES}`);
           resolve(true);
         }, 1500);
       });
@@ -93,13 +93,13 @@ export class CreateTemplate {
 
       setTimeout(() => {
         if (execOk) {
-          spinner.succeed("Customize: Ok!");
+          spinner.succeed(`Customize: Ok! ${EMOJIS.SUNGLASSES}`);
           const spinnerFinish = ora({
             spinner: {
               interval: 120,
               frames: ["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"],
             },
-            text: "Installing dependencies and configuring project...",
+            text: `${EMOJIS.DRUMS} Installing dependencies and configuring project...`,
           });
           spinnerFinish.start();
           new Promise((resolve, _reject) => {

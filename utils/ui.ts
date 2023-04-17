@@ -1,6 +1,7 @@
 import { get } from "node-emoji";
 
 export const EMOJIS = {
+  SUNGLASSES :get('sunglasses'),
   HEART: get("heart"),
   COFFEE: get("coffee"),
   BEER: get("beer"),
@@ -18,4 +19,5 @@ export const EMOJIS = {
   BOOM: get("boom"),
   PRAY: get("pray"),
   WINE: get("wine_glass"),
+  DRUMS : get('drum_with_drumsticks')
 };
