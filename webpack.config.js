@@ -1,21 +1,18 @@
+const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
 module.exports = {
   entry: './bin/grpcmkr.ts',
-  module: {
-    rules: [
-      {
-        test: /\.ts?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
+  mode:'production',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dd'),
+  },
+  resolve: {
+    extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
+  },
+  externals: [nodeExternals()],
+  module: {
+    rules: [{ test: /\.ts$/, loader: 'ts-loader' }],
   },
 };
