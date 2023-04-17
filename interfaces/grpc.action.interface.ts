@@ -6,6 +6,7 @@ export interface RpcDelcare {
 export interface GrpcServiceDefinitions {
   nameService: string;
   nameHandlerFile: string;
+  nameHandlerImport: string;
   nameClass: string;
   nameHandlerExtends: string;
   rpc: RpcDelcare[];

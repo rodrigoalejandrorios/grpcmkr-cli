@@ -14,12 +14,14 @@ export class GrpcFileGenerate extends FileGrpcReader {
     this.nameDir = nameDir;
   }
 
-  public generate() {
-    this.handlersGenerate();
-    this.serviceRegisterGenerate();
+  public async generate() {
+    await this.handlersGenerate();
+    await this.serviceRegisterGenerate();
+    const execOk = await this.generateProto();
+    return execOk;
   }
 
-  private serviceRegisterGenerate() {
+  private async serviceRegisterGenerate() {
     const dataGrpcReader = this.grpcFileMapper();
     //console.log(JSON.stringify(dataGrpcReader))
     const reader = fs
@@ -44,7 +46,7 @@ export class GrpcFileGenerate extends FileGrpcReader {
       textToModificate,
       "&*&importHanlders&*&",
       dataGrpcReader.services
-        .map((x) => `import { ${x.nameClass} } from './${x.nameHandlerFile}';`)
+        .map((x) => `import { ${x.nameClass} } from './${x.nameHandlerImport}';`)
         .join("\n")
     );
 
@@ -71,7 +73,18 @@ export class GrpcFileGenerate extends FileGrpcReader {
     );
   }
 
-  private handlersGenerate() {
+  private async generateProto() {
+    fs.writeFileSync(
+      path.join(
+        process.cwd(),
+        `${this.nameDir}/src/proto/${this.createStringByFile.fileName}`
+      ),
+      this.createStringByFile.fileContent
+    );
+    return true;
+  }
+
+  private async handlersGenerate() {
     const dataGrpcReader = this.grpcFileMapper();
     const reader = fs
       .readFileSync(path.join(process.cwd(), "layers/handler.txt"))

@@ -43,8 +43,9 @@ export class FileGrpcReader extends AbstractAction {
       definitionServices.push({
         nameService,
         nameHandlerFile: `${toCamelCase(nameService)}.handler.ts`,
+        nameHandlerImport: `${toCamelCase(nameService)}.handler`,
         nameClass: `HandlerClass${nameService}`,
-        nameHandlerExtends: `${nameService}Handler`,
+        nameHandlerExtends: `${nameService}Handlers`,
         rpc: rpcsDef,
       });
     });
