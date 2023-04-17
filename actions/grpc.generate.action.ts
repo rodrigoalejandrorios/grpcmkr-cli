@@ -1,12 +1,12 @@
-import { FileGrpcReader } from "./grpc.reader.action";
-import * as fs from "fs";
-import path from "path";
-import { RpcDelcare } from "../interfaces/grpc.action.interface";
-import { handlerLayer } from "../layers/handler";
-import { serviceRegisterLayer } from "../layers/service.register";
+import { FileGrpcReader } from './grpc.reader.action';
+import * as fs from 'fs';
+import path from 'path';
+import { RpcDelcare } from '../interfaces/grpc.action.interface';
+import { handlerLayer } from '../layers/handler';
+import { serviceRegisterLayer } from '../layers/service.register';
 
 enum PATH_MANAGER {
-  REGISTER_FILE_NAME = "service.register.ts",
+  REGISTER_FILE_NAME = 'service.register.ts',
 }
 
 export class GrpcFileGenerate extends FileGrpcReader {
@@ -34,47 +34,47 @@ export class GrpcFileGenerate extends FileGrpcReader {
 
     textToModificate = this.replacement(
       textToModificate,
-      "&*&namePackage&*&",
+      '&*&namePackage&*&',
       dataGrpcReader.namePackage,
-      true
+      true,
     );
 
     textToModificate = this.replacement(
       textToModificate,
-      "&*&packageFileName&*&",
-      dataGrpcReader.packageFileName
+      '&*&packageFileName&*&',
+      dataGrpcReader.packageFileName,
     );
 
     textToModificate = this.replacement(
       textToModificate,
-      "&*&importHanlders&*&",
+      '&*&importHanlders&*&',
       dataGrpcReader.services
         .map(
-          (x) => `import { ${x.nameClass} } from './${x.nameHandlerImport}';`
+          (x) => `import { ${x.nameClass} } from './${x.nameHandlerImport}';`,
         )
-        .join("\n")
+        .join('\n'),
     );
 
     textToModificate = this.replacement(
       textToModificate,
-      "&*&servicesInyect&*&",
+      '&*&servicesInyect&*&',
       dataGrpcReader.services
         .map(
           (x) => `
         {
           handler: ${x.nameClass},
           nameService: '${x.nameService}'
-        },`
+        },`,
         )
-        .join("")
+        .join(''),
     );
 
     fs.writeFileSync(
       path.join(
         process.cwd(),
-        `${this.nameDir}/src/${PATH_MANAGER.REGISTER_FILE_NAME}`
+        `${this.nameDir}/src/${PATH_MANAGER.REGISTER_FILE_NAME}`,
       ),
-      textToModificate
+      textToModificate,
     );
   }
 
@@ -82,9 +82,9 @@ export class GrpcFileGenerate extends FileGrpcReader {
     fs.writeFileSync(
       path.join(
         process.cwd(),
-        `${this.nameDir}/src/proto/${this.createStringByFile.fileName}`
+        `${this.nameDir}/src/proto/${this.createStringByFile.fileName}`,
       ),
-      this.createStringByFile.fileContent
+      this.createStringByFile.fileContent,
     );
     return true;
   }
@@ -105,14 +105,14 @@ export class GrpcFileGenerate extends FileGrpcReader {
         const keysRepeat = Object.keys(services[i].rpc[g]);
 
         const collectImports = keysRepeat
-          .filter((f) => f !== "nameRpc")
+          .filter((f) => f !== 'nameRpc')
           .map(
             (key) =>
               `import { ${
                 services[i].rpc[g][key as keyof RpcDelcare]
               } } from "./interfaces/${dataGrpcReader.namePackage}/${
                 services[i].rpc[g][key as keyof RpcDelcare]
-              }";`
+              }";`,
           );
 
         importsInit.push(...collectImports);
@@ -128,36 +128,36 @@ export class GrpcFileGenerate extends FileGrpcReader {
       const imports = [...new Set(importsInit)];
       textToModificate = this.replacement(
         textToModificate,
-        "&*&importsInterfaceServices&*&",
-        imports.join("\n")
+        '&*&importsInterfaceServices&*&',
+        imports.join('\n'),
       );
       textToModificate = this.replacement(
         textToModificate,
-        "&*&nameClass&*&",
-        services[i].nameClass
+        '&*&nameClass&*&',
+        services[i].nameClass,
       );
 
       textToModificate = this.replacement(
         textToModificate,
-        "&*&importHandler&*&",
-        `import { ${services[i].nameHandlerExtends} } from "./interfaces/mailer/${services[i].nameService}";`
+        '&*&importHandler&*&',
+        `import { ${services[i].nameHandlerExtends} } from "./interfaces/mailer/${services[i].nameService}";`,
       );
       textToModificate = this.replacement(
         textToModificate,
-        "&*&hanlder&*&",
-        services[i].nameHandlerExtends
+        '&*&hanlder&*&',
+        services[i].nameHandlerExtends,
       );
       textToModificate = this.replacement(
         textToModificate,
-        "&*&functionsClass&*&",
-        createFunctions.join("")
+        '&*&functionsClass&*&',
+        createFunctions.join(''),
       );
       fs.writeFileSync(
         path.join(
           process.cwd(),
-          `${this.nameDir}/src/${services[i].nameHandlerFile}`
+          `${this.nameDir}/src/${services[i].nameHandlerFile}`,
         ),
-        textToModificate
+        textToModificate,
       );
     }
   }
@@ -165,17 +165,17 @@ export class GrpcFileGenerate extends FileGrpcReader {
   private replacement(
     dataString: string,
     oldParam:
-      | "&*&importHanlders&*&"
-      | "&*&packageFileName&*&"
-      | "&*&namePackage&*&"
-      | "&*&servicesInyect&*&"
-      | "&*&functionsClass&*&"
-      | "&*&importsInterfaceServices&*&"
-      | "&*&nameClass&*&"
-      | "&*&importHandler&*&"
-      | "&*&hanlder&*&",
+      | '&*&importHanlders&*&'
+      | '&*&packageFileName&*&'
+      | '&*&namePackage&*&'
+      | '&*&servicesInyect&*&'
+      | '&*&functionsClass&*&'
+      | '&*&importsInterfaceServices&*&'
+      | '&*&nameClass&*&'
+      | '&*&importHandler&*&'
+      | '&*&hanlder&*&',
     newParam: string,
-    replaceAll: boolean = false
+    replaceAll: boolean = false,
   ) {
     return replaceAll
       ? dataString.replaceAll(oldParam, newParam)

@@ -1,8 +1,8 @@
-import chalk from "chalk";
-import sh from "child_process";
-import ora from "ora";
-import { GrpcFileGenerate } from "../actions/grpc.generate.action";
-import { EMOJIS } from "../utils/ui";
+import chalk from 'chalk';
+import sh from 'child_process';
+import ora from 'ora';
+import { GrpcFileGenerate } from '../actions/grpc.generate.action';
+import { EMOJIS } from '../utils/ui';
 
 export class CreateTemplate {
   public nameDir!: string;
@@ -16,15 +16,19 @@ export class CreateTemplate {
     const spinner = ora({
       spinner: {
         interval: 120,
-        frames: ["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"],
+        frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸'],
       },
-      text: "Creating new project...",
+      text: 'Creating new project...',
     });
 
-    const protoArr: string[] = this.namePathProto.split("/");
+    const protoArr: string[] = this.namePathProto.split('/');
     const isProto = protoArr[protoArr.length - 1];
-    if (!isProto.includes("proto")) {
-      spinner.fail(chalk.red(`The file doesn't have the ".proto" extension or is a directory ${EMOJIS.CRYING}`));
+    if (!isProto.includes('proto')) {
+      spinner.fail(
+        chalk.red(
+          `The file doesn't have the ".proto" extension or is a directory ${EMOJIS.CRYING}`,
+        ),
+      );
       process.exit(1);
     }
 
@@ -51,9 +55,9 @@ export class CreateTemplate {
     const spinner = ora({
       spinner: {
         interval: 120,
-        frames: ["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"],
+        frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸'],
       },
-      text: "Step 1: Templetizing project...",
+      text: 'Step 1: Templetizing project...',
     });
     spinner.start();
     const command = `cd ${process.cwd()}/${
@@ -81,14 +85,14 @@ export class CreateTemplate {
       const spinner = ora({
         spinner: {
           interval: 120,
-          frames: ["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"],
+          frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸'],
         },
-        text: "Step 2: Customize project...",
+        text: 'Step 2: Customize project...',
       });
       spinner.start();
       const execOk = await new GrpcFileGenerate(
         this.namePathProto,
-        this.nameDir
+        this.nameDir,
       ).generate();
 
       setTimeout(() => {
@@ -97,7 +101,7 @@ export class CreateTemplate {
           const spinnerFinish = ora({
             spinner: {
               interval: 120,
-              frames: ["▹▹▹▹▹", "▸▹▹▹▹", "▹▸▹▹▹", "▹▹▸▹▹", "▹▹▹▸▹", "▹▹▹▹▸"],
+              frames: ['▹▹▹▹▹', '▸▹▹▹▹', '▹▸▹▹▹', '▹▹▸▹▹', '▹▹▹▸▹', '▹▹▹▹▸'],
             },
             text: `${EMOJIS.DRUMS} Installing dependencies and configuring project...`,
           });
@@ -114,10 +118,10 @@ export class CreateTemplate {
               setTimeout(() => {
                 spinnerFinish.succeed(`${EMOJIS.ROCKET}Completed work!`);
                 spinnerFinish.info(
-                  `Run cd "${this.nameDir}" and start work ${EMOJIS.BEER}`
+                  `Run cd "${this.nameDir}" and start work ${EMOJIS.BEER}`,
                 );
                 spinnerFinish.info(
-                  `Remember to create an ".env" file to define your environment variables`
+                  `Remember to create an ".env" file to define your environment variables`,
                 );
                 resolve(true);
               }, 1500);

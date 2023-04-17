@@ -1,8 +1,8 @@
-import inquirer, { Answers, QuestionCollection } from "inquirer";
-import { Command } from "commander";
-import { AbstractCommand } from "./abstract.command";
-import { CreateTemplate } from "../scripts/create.template";
-import chalk from "chalk";
+import inquirer, { Answers, QuestionCollection } from 'inquirer';
+import { Command } from 'commander';
+import { AbstractCommand } from './abstract.command';
+import { CreateTemplate } from '../scripts/create.template';
+import chalk from 'chalk';
 
 export class GrpcCommand extends AbstractCommand {
   constructor() {
@@ -10,23 +10,23 @@ export class GrpcCommand extends AbstractCommand {
   }
   public async load(program: Command) {
     program
-      .command("create")
-      .alias("cr")
+      .command('create')
+      .alias('cr')
       .action(() => {
-        inquirer.registerPrompt("path", require("inquirer-path").PathPrompt);
+        inquirer.registerPrompt('path', require('inquirer-path').PathPrompt);
         const questions: QuestionCollection<Answers> = [
           {
-            name: "proto",
+            name: 'proto',
             message: `Write the name of the path where the ${chalk.green(
-              ".proto"
+              '.proto',
             )} file is located:`,
-            type: "path",
+            type: 'path',
             default: process.cwd(),
           },
           {
-            name: "nameDir",
-            message: "Set name of new project: ",
-            type: "input",
+            name: 'nameDir',
+            message: 'Set name of new project: ',
+            type: 'input',
           },
         ];
         inquirer.prompt(questions).then(async (a) => {
@@ -34,12 +34,11 @@ export class GrpcCommand extends AbstractCommand {
 
           const cloneRes = await new CreateTemplate(
             nameDir,
-            proto
+            proto,
           ).cloneTemplate();
           if (cloneRes) {
             await new CreateTemplate(nameDir, proto).createNewFiles();
           }
-          //new GrpcFileGenerate(path.join(process.cwd(), a.proto)).generate();
         });
       });
   }
