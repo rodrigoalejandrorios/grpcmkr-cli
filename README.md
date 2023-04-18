@@ -27,10 +27,11 @@ $ grpcmkr cr
 ```
 
 ### 2) Choose the package manager
+Package manager options are "npm" or "yarn"
 
-### 2) Path of your ".proto" file
+### 3) Path of your ".proto" file
 - Then where you are positioned in your terminal, you must pass the path of where the .proto file is. Example: `../example/path/hello.proto`
 
-### 3) Name of new project
+### 4) Name of new project
 -Finally, you must give a name to your new project. Example: `my-new-grpc-project`
 
