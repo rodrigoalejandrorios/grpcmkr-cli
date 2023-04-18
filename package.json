@@ -1,12 +1,14 @@
 {
   "name": "grpcmkr-cli",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Grpc CLI for developers",
   "scripts": {
     "test": "jest --config test/jest-config.json",
+    "test:dev":"jest --config test/jest-config.json --watchAll",
+    "coverage":"jest --config test/jest-config.json --coverage",
     "build": "tsc",
     "start": "node dist/bin/grpcmkr.js",
-    "build:prod": "webpack"
+    "webpack": "webpack --mode=production"
   },
   "repository": {
     "type": "git",

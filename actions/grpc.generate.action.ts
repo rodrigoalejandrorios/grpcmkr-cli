@@ -19,7 +19,7 @@ export class GrpcFileGenerate extends FileGrpcReader {
   public async generate() {
     await this.handlersGenerate();
     await this.serviceRegisterGenerate();
-    const execOk = await this.generateProto();
+    const execOk = await this.protoGenerate();
     return execOk;
   }
 
@@ -78,7 +78,7 @@ export class GrpcFileGenerate extends FileGrpcReader {
     );
   }
 
-  private async generateProto() {
+  private async protoGenerate() {
     fs.writeFileSync(
       path.join(
         process.cwd(),

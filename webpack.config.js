@@ -1,13 +1,17 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
-  mode: 'production',
-  devtool: "inline-source-map",
-  entry: './bin/grpcmkr.ts',
   target: 'node',
+  entry: {
+    index: './bin/grpcmkr.ts',
+  },
   output: {
     path: path.resolve(__dirname, './dist/bin'),
-    filename: 'grpcmkr.js'
+    filename: 'grpcmkr.js',
+    library: 'grpcmkr-cli',
+    libraryTarget: 'umd',
+    globalObject: 'this',
+    umdNamedDefine: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -17,7 +21,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        exclude: /node_modules/,
       },
     ],
   },

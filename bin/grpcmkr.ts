@@ -8,7 +8,7 @@ const bootstrap = async () => {
   console.log(colorCodrr('GrpcMKR!'))
   program
     .version(
-      `Version ${require("../../package.json").version}`,
+      `Version ${require("../package.json").version}`,
       "-v, --version",
       "Output the current version."
     )
