@@ -4,7 +4,7 @@ tsconfig.json
 node_modules
 **/*.ts
 *.ts
-webpack.config.ts
+webpack.config.js
 .prettierrc
 .gitignore
 coverage
