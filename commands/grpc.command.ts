@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { AbstractCommand } from './abstract.command';
 import { CreateTemplate } from '../scripts/create.template';
 import chalk from 'chalk';
+import { RUNNERS } from '../constants/runners';
 
 export class GrpcCommand extends AbstractCommand {
   constructor() {
@@ -15,6 +16,22 @@ export class GrpcCommand extends AbstractCommand {
       .action(() => {
         inquirer.registerPrompt('path', require('inquirer-path').PathPrompt);
         const questions: QuestionCollection<Answers> = [
+          {
+            name: 'runner',
+            message: 'Select the package manager to use:',
+            type: 'list',
+            choices: [
+              {
+                checked: true,
+                name: 'Use NPM',
+                value: RUNNERS.NPM,
+              },
+              {
+                name: 'Use YARN',
+                value: RUNNERS.YARN,
+              },
+            ],
+          },
           {
             name: 'proto',
             message: `Write the name of the path where the ${chalk.green(
@@ -30,14 +47,11 @@ export class GrpcCommand extends AbstractCommand {
           },
         ];
         inquirer.prompt(questions).then(async (a) => {
-          const { nameDir, proto } = a;
-
-          const cloneRes = await new CreateTemplate(
-            nameDir,
-            proto,
-          ).cloneTemplate();
+          const { nameDir, proto, runner } = a;
+          const template = new CreateTemplate(nameDir, proto, runner as RUNNERS);
+          const cloneRes = await template.cloneTemplate();
           if (cloneRes) {
-            await new CreateTemplate(nameDir, proto).createNewFiles();
+            await template.createNewFiles();
           }
         });
       });
