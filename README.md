@@ -32,9 +32,13 @@ Package manager options are "npm" or "yarn"
 ### 3) Path of your ".proto" file
 Then where you are positioned in your terminal, you must pass the path of where the .proto file is. Example: `./example/path/hello.proto`
 ```
-|__examplpe
+|__example
     |__path
-        |__hello.proto
+        |__hello.proto <-- It is important
+                           that this file has
+                           a ".proto" extension
+                           and that it has its
+                           proper configuration.
 ```
 
 ### 4) Name of new project
