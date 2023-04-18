@@ -26,6 +26,8 @@ Or also his alias
 $ grpcmkr cr
 ```
 
+### 2) Choose the package manager
+
 ### 2) Path of your ".proto" file
 - Then where you are positioned in your terminal, you must pass the path of where the .proto file is. Example: `../example/path/hello.proto`
 

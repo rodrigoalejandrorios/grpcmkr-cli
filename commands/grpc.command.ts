@@ -18,7 +18,7 @@ export class GrpcCommand extends AbstractCommand {
         const questions: QuestionCollection<Answers> = [
           {
             name: 'runner',
-            message: 'Select the package manager to use:',
+            message: 'Choose the package manager: ',
             type: 'list',
             choices: [
               {
