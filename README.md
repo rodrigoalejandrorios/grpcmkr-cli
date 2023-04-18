@@ -12,7 +12,7 @@
 
 ## Install CLI
 ```bash
-$ npm install -g grpcmrk-cli
+$ npm install -g grpcmkr-cli
 ```
 
 ## How to use
