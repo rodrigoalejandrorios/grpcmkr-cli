@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://res.cloudinary.com/codrrdev/image/upload/v1681815884/codrr-banner_bgrxvs.png" width="200" alt="Nest Logo" /></a>
+  <a href="https://www.youtube.com/c/codrrdev" target="blank"><img src="https://res.cloudinary.com/codrrdev/image/upload/v1681815884/codrr-banner_bgrxvs.png" width="200" alt="Nest Logo" /></a>
 </p>
  <p align="center">Powered by @codrrdev</p>
  <p align="center">
