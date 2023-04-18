@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rodrigoalejandrorios/grpcli.git"
+    "url": "git+https://github.com/rodrigoalejandrorios/grpcmkr-cli.git"
   },
   "keywords": [
     "grpc",
@@ -25,9 +25,9 @@
   "author": "Rodrigo Rios (codrrdev)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rodrigoalejandrorios/grpcli/issues"
+    "url": "https://github.com/rodrigoalejandrorios/grpcmkr-cli/issues"
   },
-  "homepage": "https://github.com/rodrigoalejandrorios/grpcli#readme",
+  "homepage": "https://github.com/rodrigoalejandrorios/grpcmkr-cli#readme",
   "devDependencies": {
     "@types/figlet": "^1.5.5",
     "@types/inquirer": "^9.0.3",
