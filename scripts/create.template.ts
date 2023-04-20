@@ -4,6 +4,7 @@ import ora from 'ora';
 import { GrpcFileGenerate } from '../actions/grpc.generate.action';
 import { RUNNERS } from '../constants/runners';
 import { EMOJIS } from '../utils/ui';
+import { validatorEmptyFile } from '../utils/validatorEmptyFile';
 
 export class CreateTemplate {
   public nameDir!: string;
@@ -30,6 +31,15 @@ export class CreateTemplate {
       spinner.fail(
         chalk.red(
           `The file doesn't have the ".proto" extension or is a directory ${EMOJIS.CRYING}`,
+        ),
+      );
+      process.exit(1);
+    }
+
+    if (!validatorEmptyFile(this.namePathProto)) {
+      spinner.fail(
+        chalk.red(
+          `The file is empty${EMOJIS.CRYING}`,
         ),
       );
       process.exit(1);

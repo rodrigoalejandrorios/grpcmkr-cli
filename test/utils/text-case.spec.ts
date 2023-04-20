@@ -10,15 +10,15 @@ describe('Utils - Text case', () => {
     str = 'my new text';
   });
   describe('Implement use with text', () => {
-    it('Recieved pascal case', () => {
+    it('Func - pascalCase', () => {
       const newSrt = pascalCase(str);
       expect(newSrt).toBe('MyNewText');
     });
-    it('Recieved title case', () => {
+    it('Func - toTitleCase', () => {
       const newSrt = toTitleCase(str);
       expect(newSrt).toBe('MyNewText');
     });
-    it('Recieved camel case', () => {
+    it('Func - toCamelCase', () => {
       const newSrt = toCamelCase(str);
       expect(newSrt).toBe('myNewText');
     });
