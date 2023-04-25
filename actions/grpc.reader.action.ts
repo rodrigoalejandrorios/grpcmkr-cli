@@ -9,7 +9,7 @@ import { toCamelCase } from '../utils/text-case.utils';
 export class FileGrpcReader extends AbstractAction {
   constructor(pathStr: string) {
     super(pathStr);
-    this.grpcFileMapper();
+    //this.grpcFileMapper();
   }
   public grpcFileMapper(): GrpcDefinition {
     const en = this.createStringByFile.fileContent;
@@ -26,7 +26,8 @@ export class FileGrpcReader extends AbstractAction {
 
     const definitionServices: GrpcServiceDefinitions[] = [];
     initServices.map((init) => {
-      const nameService = init.split(' {-')[0].replace('service ', '');
+      let nameService = init.split(' {-')[0].replace('service ', '');
+      nameService = nameService.replace('-','')
       const rpcsDef = init
         .split('-rpc')
         .filter((x) => !x.includes('service'))

@@ -14,6 +14,7 @@ export class GrpcFileGenerate extends FileGrpcReader {
   constructor(pathFile: string, nameDir: string) {
     super(pathFile);
     this.nameDir = nameDir;
+    this.grpcFileMapper()
   }
 
   public async generate() {
