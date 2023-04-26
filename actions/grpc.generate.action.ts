@@ -148,7 +148,7 @@ export class GrpcFileGenerate extends FileGrpcReader {
       textToModificate = this.replacement(
         textToModificate,
         '&*&importHandler&*&',
-        `import { ${services[i].nameHandlerExtends} } from "./interfaces/mailer/${services[i].nameService}";`,
+        `import { ${services[i].nameHandlerExtends} } from "./interfaces/${dataGrpcReader.namePackage}/${services[i].nameService}";`,
       );
       textToModificate = this.replacement(
         textToModificate,

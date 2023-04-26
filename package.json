@@ -1,6 +1,6 @@
 {
   "name": "grpcmkr-cli",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Grpc CLI for developers",
   "scripts": {
     "test": "jest --config test/jest.config.json",
