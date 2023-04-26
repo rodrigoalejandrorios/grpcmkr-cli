@@ -42,6 +42,13 @@ export class GrpcFileGenerate extends FileGrpcReader {
 
     textToModificate = this.replacement(
       textToModificate,
+      '&*&packageFileNameNoProto&*&',
+      dataGrpcReader.packageFileName.replace('.proto',''),
+    );
+    
+
+    textToModificate = this.replacement(
+      textToModificate,
       '&*&packageFileName&*&',
       dataGrpcReader.packageFileName,
     );
@@ -168,6 +175,7 @@ export class GrpcFileGenerate extends FileGrpcReader {
     oldParam:
       | '&*&importHanlders&*&'
       | '&*&packageFileName&*&'
+      | '&*&packageFileNameNoProto&*&'
       | '&*&namePackage&*&'
       | '&*&servicesInyect&*&'
       | '&*&functionsClass&*&'
