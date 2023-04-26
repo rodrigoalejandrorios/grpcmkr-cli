@@ -36,9 +36,9 @@ export class FileGrpcReader extends AbstractAction {
         .map(
           (c) =>
             ({
-              nameRpc: c.split(' (')[0],
-              input: c.split(' (')[1].split(') ')[0],
-              output: c.split(' (')[2].split(') ')[0],
+              nameRpc: c.trim().split('(')[0].trim(),
+              input: c.trim().split('(')[1].split(')')[0].trim(),
+              output: c.trim().split('(')[2].split(')')[0].trim(),
             } as RpcDelcare),
         );
       definitionServices.push({

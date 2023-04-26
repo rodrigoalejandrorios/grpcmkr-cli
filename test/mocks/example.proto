@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package events;
+
+service EventsService {
+  rpc CreateEvent(CreateEventBody) returns (CreateEventResponse) {}
+  rpc GetEventById(EventSearch) returns (Event) {}
+  rpc AutoInvite(AutoInviteBody) returns (Event) {}
+  rpc DeleteEvent(EventId) returns (Void) {}
+}
+
+message Void {}
+
+message CreateEventBody {
+  string summary = 1;
+  string description = 2;
+  string date = 3;
+  string hourStart = 4;
+  string hourEnd = 5;
+  repeated string emails = 6;
+}
+
+message AutoInviteBody {
+  string id = 1;
+  string email = 2;
+  repeated string emails = 3;
+}
+
+message EventSearch {
+  string eventId = 1;
+  int32 maxAttendees = 2;
+}
+
+message EventId {
+  string eventId = 1;
+}
+
+message Start {
+  string dateTime = 1;
+}
+
+message End {
+  string dateTime = 1;
+}
+
+//Response
+message CreateEventResponse {
+  string id = 1;
+  repeated string attendees = 2;
+  string summary = 3;
+  string description = 4;
+  Start start = 5;
+  End end = 6;
+}
+
+message Event {
+  string id = 1;
+  repeated string attendees = 2;
+  string summary = 3;
+  string description = 4;
+  Start start = 5;
+  End end = 6;
+  string created = 7;
+}
+
+
